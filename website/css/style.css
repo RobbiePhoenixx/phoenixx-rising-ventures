@@ -189,10 +189,10 @@ input, select, textarea, button { font-family: inherit; }
   text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 28px rgba(204,17,0,0.5);
   line-height: 1;
 }
-/* Line 2 — Phoenixx Rising Ventures (secondary) */
+/* Line 2 — Phoenixx Rising Ventures (secondary) — 20% larger */
 .banner-sub-line {
   font-family: var(--font-head);
-  font-size: clamp(0.65rem, 1.5vw, 1.05rem);
+  font-size: clamp(0.8rem, 1.8vw, 1.26rem);
   font-weight: 600;
   color: rgba(255,255,255,0.82);
   letter-spacing: 0.12em;
@@ -200,9 +200,9 @@ input, select, textarea, button { font-family: inherit; }
   text-shadow: 0 1px 6px rgba(0,0,0,0.9);
   line-height: 1;
 }
-/* Line 3 — Sonic Octane National Tour (Red Thinker, accent) */
+/* Line 3 — Sonic Octane National Tour (Red Thinker, accent) — matches sub-line */
 .banner-tour-line {
-  font-size: clamp(0.6rem, 1.3vw, 0.9rem);
+  font-size: clamp(0.8rem, 1.8vw, 1.26rem);
   color: var(--gold-light);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -239,25 +239,25 @@ input, select, textarea, button { font-family: inherit; }
 /* ── NAV ──────────────────────────────────────── */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 1.25rem 2.5rem;
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.1rem 2.5rem;
   transition: padding 0.4s var(--ease-out), background 0.4s;
 }
 .nav::before {
   content: '';
   position: absolute; inset: 0; z-index: -1;
-  background: rgba(2,5,10,0);
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
+  background: transparent;    /* fully transparent — flag shows through */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   transition: background 0.4s, backdrop-filter 0.4s;
-  border-bottom: 1px solid transparent;
+  border-bottom: none;
 }
-.nav.scrolled { padding: 0.85rem 2.5rem; }
+.nav.scrolled { padding: 0.8rem 2.5rem; }
 .nav.scrolled::before {
-  background: rgba(2,5,10,0.92);
+  background: rgba(0,0,0,0.82);   /* only darkens once user scrolls past flag */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom-color: rgba(204,17,0,0.15);
+  border-bottom: 1px solid rgba(255,34,0,0.25);
 }
 
 .nav-brand { display: flex; align-items: center; gap: 0.75rem; }
@@ -266,21 +266,44 @@ input, select, textarea, button { font-family: inherit; }
 .nav-brand-name { font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--gold); line-height: 1.1; }
 .nav-brand-sub  { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); }
 
-.nav-links { display: flex; gap: 2.5rem; }
+.nav-links {
+  display: flex;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  list-style: none;
+  margin: 0; padding: 0;
+}
 .nav-links a {
-  font-size: 1.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   font-weight: 700;
-  color: var(--silver);
-  position: relative; padding-bottom: 2px;
-  transition: color 0.2s;
+  color: #FFFFFF;                        /* pure white — max readability all devices */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.7);
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.2s, text-shadow 0.2s;
 }
 .nav-links a::after {
-  content: ''; position: absolute; bottom: 0; left: 0;
-  height: 1px; width: 0; background: var(--gold);
+  content: '';
+  position: absolute; bottom: 0; left: 0;
+  height: 2px; width: 0;
+  background: linear-gradient(90deg, #FF2200, #CC1100); /* Pantone 1788 C → 1795 C */
+  border-radius: 2px;
   transition: width 0.3s var(--ease-out);
 }
-.nav-links a:hover { color: var(--white); }
+/* Hover — Pantone 1788 C (bright red), lightest approved color */
+.nav-links a:hover {
+  color: #FF2200;
+  text-shadow: 0 0 18px rgba(255,34,0,0.55), 0 1px 4px rgba(0,0,0,0.6);
+}
 .nav-links a:hover::after { width: 100%; }
+/* Active/click — Pantone 1795 C (primary brand red) */
+.nav-links a:active {
+  color: #CC1100;
+  text-shadow: 0 0 10px rgba(204,17,0,0.6);
+}
 
 .nav-cta {
   background: var(--gold);
@@ -316,9 +339,13 @@ input, select, textarea, button { font-family: inherit; }
 .mobile-menu nav { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
 .mobile-link {
   font-family: var(--font-head); font-size: 2rem; font-weight: 700;
-  color: var(--silver); transition: color 0.2s;
+  color: #FFFFFF; transition: color 0.2s, text-shadow 0.2s;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.6);
 }
-.mobile-link:hover { color: var(--gold); }
+.mobile-link:hover {
+  color: #FF2200;
+  text-shadow: 0 0 20px rgba(255,34,0,0.5);
+}
 .mobile-cta { margin-top: 1rem; font-size: 0.9rem; }
 .mobile-menu-close {
   position: absolute; top: 1.5rem; right: 1.5rem;
@@ -1246,19 +1273,7 @@ body.dev-mode .calendly-note { display: block; }
   text-shadow: 0 0 30px rgba(204,17,0,0.5), 0 0 60px rgba(204,17,0,0.2);
 }
 
-/* ── NAV LINK UNDERLINE SLIDE ───────────────────── */
-.nav-links a {
-  position: relative;
-}
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px; left: 0;
-  width: 0; height: 1px;
-  background: var(--gold);
-  transition: width 0.3s var(--ease-out);
-}
-.nav-links a:hover::after { width: 100%; }
+/* nav-links styles are defined in the NAV section above — no override needed */
 
 /* ── SCROLL PROGRESS GLOW ───────────────────────── */
 .scroll-progress {
