@@ -164,8 +164,8 @@
   <div class="tour-bg-text" aria-hidden="true">THE TOUR</div>
 
   <div class="section-inner">
+    <h2 class="tour-band-name glitch" data-glitch="SONIC OCTANE'S">SONIC OCTANE'S</h2>
     <div class="section-label center">Phoenixx Rising National Tour</div>
-    <h2 class="tour-band-name glitch" data-glitch="Sonic Octane">Sonic Octane</h2>
     <p class="tour-tagline">Live. Loud. All for a Cause.</p>
 
     <div class="tour-facts">
@@ -182,6 +182,37 @@
       <div class="tour-fact">
         <span class="tour-fact-num">3</span>
         <span class="tour-fact-label">Consecutive Weeks</span>
+      </div>
+    </div>
+
+    <div class="gold-rule centered"></div>
+
+    <!-- ── VIDEO CAROUSEL ────────────────────────── -->
+    <div class="video-carousel" id="video-carousel" aria-label="Tour Videos">
+      <div class="video-track" id="video-track">
+
+        <!-- Slide 1 — drop your first mp4 at website/videos/sonic-octane-01.mp4 -->
+        <div class="video-slide active" data-index="0">
+          <video class="carousel-video" src="videos/sonic-octane-01.mp4"
+                 muted playsinline preload="metadata"
+                 aria-label="Sonic Octane Tour Video 1">
+          </video>
+          <div class="video-placeholder" aria-hidden="true">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(204,17,0,0.5)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16" fill="rgba(204,17,0,0.5)" stroke="none"/></svg>
+            <p>Save video to<br/><strong>website/videos/sonic-octane-01.mp4</strong></p>
+          </div>
+          <div class="video-slide-caption">Sonic Octane — Live Performance</div>
+        </div>
+
+        <!-- Additional slides: duplicate this block, increment filename + caption -->
+
+      </div>
+
+      <button class="video-nav video-prev" id="video-prev" aria-label="Previous video">&#8249;</button>
+      <button class="video-nav video-next" id="video-next" aria-label="Next video">&#8250;</button>
+
+      <div class="video-dots" id="video-dots" role="tablist" aria-label="Video slides">
+        <button class="video-dot active" data-slide="0" role="tab" aria-selected="true" aria-label="Video 1"></button>
       </div>
     </div>
 
@@ -574,6 +605,7 @@
 <script type="module" src="js/animations.js"></script>
 <script src="js/effects.js"></script>
 <script src="js/main.js"></script>
+<script src="js/video-carousel.js"></script>
 <script>document.getElementById('copy-year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
