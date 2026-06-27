@@ -4,6 +4,17 @@
    © 2026 Phoenixx Rising Ventures LLC
    ============================================================ */
 
+/* ── RED THINKER CUSTOM FONT ──────────────────── */
+@font-face {
+  font-family: 'RedThinker';
+  src: url('../fonts/RedThinker-Regular.woff2') format('woff2'),
+       url('../fonts/RedThinker-Regular.otf')  format('opentype'),
+       url('../fonts/RedThinker-Regular.ttf')  format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ── TOKENS — Robbie Phoenixx Brand Colors ───────── */
 /* Pantone 1795 C = #CC1100 | Pantone 1788 C = #FF2200 | Pantone 7621 C = #8B0000 | Pantone Black C = #000000 */
 :root {
@@ -1171,4 +1182,13 @@ body.dev-mode .calendly-note { display: block; }
 /* ── SECTION-LABEL GLOW ─────────────────────────── */
 .section-label {
   text-shadow: 0 0 20px rgba(204,17,0,0.4);
+}
+
+/* ── RED THINKER FONT — brand name applications ── */
+.rt-font,
+.tour-band-name,
+.player-artist,
+.start-sub {
+  font-family: 'RedThinker', var(--font-head), serif;
+  letter-spacing: 0.04em;
 }
