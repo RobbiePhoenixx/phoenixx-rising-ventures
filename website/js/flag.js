@@ -79,11 +79,9 @@
     const display = document.getElementById('flag-canvas');
     if (!display) return;
 
-    // Match canvas pixel size to CSS display size
-    const cssW = display.offsetWidth  || FLAG_W;
-    const cssH = display.offsetHeight || FLAG_H;
-    display.width  = Math.min(FLAG_W, cssW * window.devicePixelRatio);
-    display.height = Math.round(display.width / (FLAG_W / FLAG_H));
+    // Use fixed pixel dimensions for the banner canvas
+    display.width  = FLAG_W;
+    display.height = FLAG_H;
 
     const dctx     = display.getContext('2d');
     const staticFlag = buildStaticFlag();

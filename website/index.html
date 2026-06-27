@@ -50,43 +50,16 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-trail" id="cursor-trail"></div>
 
-<!-- ── TAP TO ENTER OVERLAY ───────────────────────── -->
-<div class="start-overlay" id="start-overlay">
-  <div class="start-content">
-
-    <!-- 3D WAVING FLAG -->
-    <div class="flag-scene" aria-hidden="true">
-      <div class="flagpole-wrap">
-        <div class="flagpole-ball"></div>
-        <div class="flagpole"></div>
-        <div class="flagpole-base"></div>
-      </div>
-      <canvas id="flag-canvas" width="560" height="295"></canvas>
-      <div class="flag-glow"></div>
+<!-- ── AMERICAN FLAG BANNER ───────────────────────── -->
+<div class="flag-banner" role="banner" aria-label="Phoenixx Rising Ventures — Housing for Heroes">
+  <canvas id="flag-canvas" aria-hidden="true"></canvas>
+  <div class="flag-banner-overlay"></div>
+  <div class="flag-banner-text">
+    <img src="images/phoenix-logo.jpg" alt="Phoenixx Rising Ventures Logo" class="banner-phoenix-logo" />
+    <div class="banner-tagline">
+      <span class="banner-title rt-font">Phoenixx Rising Ventures</span>
+      <span class="banner-sub">Housing for Heroes &nbsp;·&nbsp; <span class="rt-font">Sonic Octane</span> National Tour</span>
     </div>
-
-    <!-- PHOENIX + CTA -->
-    <div class="start-inner">
-      <div class="start-phoenix" aria-hidden="true">
-        <svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="pg1" x1="60" y1="130" x2="60" y2="0" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#8B0000"/>
-              <stop offset="35%" stop-color="#CC1100"/>
-              <stop offset="100%" stop-color="#FF2200"/>
-            </linearGradient>
-          </defs>
-          <path d="M15 70 Q5 30 35 20 Q20 45 42 60 Z" fill="url(#pg1)" opacity="0.9"/>
-          <path d="M105 70 Q115 30 85 20 Q100 45 78 60 Z" fill="url(#pg1)" opacity="0.9"/>
-          <path d="M38 100 Q60 118 82 100 Q76 80 60 74 Q44 80 38 100 Z" fill="#CC1100"/>
-          <path d="M42 60 Q39 42 60 14 Q81 42 78 60 Q70 80 60 84 Q50 80 42 60 Z" fill="url(#pg1)"/>
-          <path d="M50 64 Q49 50 60 28 Q71 50 70 64 Q66 78 60 82 Q54 78 50 64 Z" fill="#FF2200" opacity="0.7"/>
-        </svg>
-      </div>
-      <p class="start-label">Tap to Enter</p>
-      <p class="start-sub">Housing for Heroes · Sonic Octane</p>
-    </div>
-
   </div>
 </div>
 
@@ -95,19 +68,7 @@
 ════════════════════════════════════════════════════ -->
 <nav class="nav" id="nav">
   <a href="#home" class="nav-brand">
-    <svg class="nav-flame" viewBox="0 0 60 70" fill="none">
-      <defs>
-        <linearGradient id="nf" x1="30" y1="65" x2="30" y2="0" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#8B0000"/>
-          <stop offset="40%" stop-color="#CC1100"/>
-          <stop offset="100%" stop-color="#CC1100"/>
-        </linearGradient>
-      </defs>
-      <path d="M8 38 Q3 16 18 10 Q10 24 22 32 Z" fill="url(#nf)" opacity="0.9"/>
-      <path d="M52 38 Q57 16 42 10 Q50 24 38 32 Z" fill="url(#nf)" opacity="0.9"/>
-      <path d="M20 52 Q30 60 40 52 Q37 40 30 37 Q23 40 20 52 Z" fill="#CC1100"/>
-      <path d="M22 32 Q20 22 30 8 Q40 22 38 32 Q34 42 30 44 Q26 42 22 32 Z" fill="url(#nf)"/>
-    </svg>
+    <img src="images/phoenix-logo.jpg" alt="Phoenixx Rising Ventures" class="nav-phoenix-img" />
     <div class="nav-brand-text">
       <span class="nav-brand-name">Phoenixx Rising</span>
       <span class="nav-brand-sub">Housing for Heroes</span>
@@ -243,7 +204,7 @@
       </div>
       <div class="mission-quote-card">
         <blockquote>"Every veteran deserves a place to call home."</blockquote>
-        <cite>— Robert Zeas, Founder</cite>
+        <cite>— <a href="https://www.linkedin.com/in/robertzeas" target="_blank" rel="noopener noreferrer" class="rt-font name-link">Robbie Phoenixx</a>, Founder</cite>
       </div>
     </div>
 
@@ -587,19 +548,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <div class="footer-logo">
-          <svg class="nav-flame" viewBox="0 0 60 70" fill="none" width="36" height="42">
-            <defs>
-              <linearGradient id="ff" x1="30" y1="65" x2="30" y2="0" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#8B0000"/>
-                <stop offset="50%" stop-color="#CC1100"/>
-                <stop offset="100%" stop-color="#CC1100"/>
-              </linearGradient>
-            </defs>
-            <path d="M8 38 Q3 16 18 10 Q10 24 22 32 Z" fill="url(#ff)" opacity="0.9"/>
-            <path d="M52 38 Q57 16 42 10 Q50 24 38 32 Z" fill="url(#ff)" opacity="0.9"/>
-            <path d="M20 52 Q30 60 40 52 Q37 40 30 37 Q23 40 20 52 Z" fill="#CC1100"/>
-            <path d="M22 32 Q20 22 30 8 Q40 22 38 32 Q34 42 30 44 Q26 42 22 32 Z" fill="url(#ff)"/>
-          </svg>
+          <img src="images/phoenix-logo.jpg" alt="Phoenixx Rising Ventures" class="footer-phoenix-img" />
           <span>Phoenixx Rising Ventures</span>
         </div>
         <p>Raising funds to house America's veterans through the power of live rock music. One tour. One mission. Infinite impact.</p>

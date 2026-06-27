@@ -4,7 +4,6 @@
 // ============================================================
 (function () {
   const audio    = document.getElementById('site-audio');
-  const overlay  = document.getElementById('start-overlay');
   const eq       = document.getElementById('player-eq');
   const fill     = document.getElementById('player-fill');
   const volSlider= document.getElementById('vol-slider');
@@ -22,35 +21,24 @@
   syncIcons(savedMute);
   if (eq) eq.classList.toggle('muted', savedMute);
 
-  // Attempt silent autoplay → then restore preference
+  // Attempt silent autoplay → then restore mute preference
   audio.muted = true;
   const silentPlay = audio.play();
   if (silentPlay !== undefined) {
-    silentPlay.then(() => {
-      audio.muted = savedMute;
-      dismissOverlay();
-    }).catch(() => showOverlay());
-  } else {
-    showOverlay();
-  }
-
-  function showOverlay() {
-    if (overlay) {
-      overlay.classList.remove('gone');
-      const go = () => {
-        audio.muted = savedMute;
-        audio.play().catch(() => {});
-        dismissOverlay();
-      };
-      overlay.addEventListener('click',      go, { once: true });
-      overlay.addEventListener('touchstart', go, { once: true, passive: true });
-    }
-  }
-
-  function dismissOverlay() {
-    if (!overlay) return;
-    overlay.classList.add('gone');
-    setTimeout(() => overlay.style.display = 'none', 750);
+    silentPlay.then(() => { audio.muted = savedMute; })
+              .catch(() => {
+                // Browser blocked autoplay — start on first user interaction
+                const unlock = () => {
+                  audio.muted = savedMute;
+                  audio.play().catch(() => {});
+                  document.removeEventListener('click',      unlock);
+                  document.removeEventListener('touchstart', unlock);
+                  document.removeEventListener('keydown',    unlock);
+                };
+                document.addEventListener('click',      unlock, { once: true });
+                document.addEventListener('touchstart', unlock, { once: true, passive: true });
+                document.addEventListener('keydown',    unlock, { once: true });
+              });
   }
 
   // Progress bar

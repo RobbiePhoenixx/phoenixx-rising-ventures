@@ -122,97 +122,104 @@ input, select, textarea, button { font-family: inherit; }
   .cursor, .cursor-trail { display: block; }
 }
 
-/* ── START OVERLAY ───────────────────────────── */
-.start-overlay {
-  position: fixed; inset: 0; z-index: 8000;
-  background: radial-gradient(ellipse at 50% 30%, rgba(20,0,0,0.97) 0%, rgba(0,0,0,0.99) 100%);
-  display: flex; align-items: center; justify-content: center;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  cursor: pointer;
-  transition: opacity 0.7s var(--ease-out);
-}
-.start-overlay.gone { opacity: 0; pointer-events: none; }
-.start-content {
-  display: flex; flex-direction: column; align-items: center;
-  gap: 1rem; padding: 1.5rem 1rem;
-  max-height: 100vh; overflow: hidden;
-}
-
-/* ── FLAG SCENE ──────────────────────────────── */
-.flag-scene {
+/* ── FLAG BANNER — top of every page ────────────── */
+.flag-banner {
   position: relative;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}
-.flagpole-wrap {
-  display: flex; flex-direction: column; align-items: center;
-  position: relative; z-index: 2;
-}
-.flagpole-ball {
-  width: 14px; height: 14px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #FFD700, #B8860B 60%, #7a5c20);
-  box-shadow: 0 0 12px rgba(255,215,0,0.5), 0 2px 6px rgba(0,0,0,0.8);
-  flex-shrink: 0;
-}
-.flagpole {
-  width: 7px;
-  height: 320px;
-  background: linear-gradient(90deg,
-    rgba(255,255,255,0.15) 0%,
-    #c4a35a 15%,
-    #e8d5b0 35%,
-    #a07840 55%,
-    #7a5c30 75%,
-    rgba(0,0,0,0.3) 100%
-  );
-  border-radius: 2px;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.7), inset -1px 0 3px rgba(255,255,255,0.15);
-  flex-shrink: 0;
-}
-.flagpole-base {
-  width: 20px; height: 6px;
-  background: linear-gradient(90deg, #7a5c30, #c4a35a, #7a5c30);
-  border-radius: 3px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  width: 100%;
+  height: clamp(100px, 18vw, 160px);
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0px, transparent 58px,
+      rgba(0,0,0,0.06) 58px, rgba(0,0,0,0.06) 62px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px, transparent 3px,
+      rgba(255,255,255,0.03) 3px, rgba(255,255,255,0.03) 4px
+    ),
+    linear-gradient(180deg, #c8a96e 0%, #b8976a 30%, #a8875e 60%, #c0985a 100%);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  z-index: 900;
 }
 #flag-canvas {
-  display: block;
-  margin-top: 10px;
-  filter:
-    drop-shadow(6px 12px 30px rgba(0,0,0,0.85))
-    drop-shadow(0 0 40px rgba(180,0,0,0.15));
-  image-rendering: crisp-edges;
-  max-width: min(560px, 90vw);
-  height: auto;
-}
-.flag-glow {
   position: absolute;
-  bottom: -20px; left: 50%; transform: translateX(-50%);
-  width: 80%; height: 30px;
-  background: radial-gradient(ellipse, rgba(204,17,0,0.18), transparent 70%);
+  top: -8%;
+  left: -2%;
+  width: 55%;
+  height: 120%;
+  transform: rotate(-8deg) translateY(-5%);
+  transform-origin: top left;
+  filter: drop-shadow(4px 6px 16px rgba(0,0,0,0.55));
+  image-rendering: crisp-edges;
+}
+.flag-banner-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,0.25) 0%,
+    transparent 45%,
+    rgba(0,0,0,0.1) 100%
+  );
   pointer-events: none;
 }
-
-.start-inner { text-align: center; }
-.start-phoenix { width: 80px; margin: 0 auto 1rem;
-  animation: floatY 2.5s ease-in-out infinite; }
-.start-phoenix svg { width: 100%; height: auto; filter: drop-shadow(0 0 24px rgba(255,34,0,0.6)); }
-.start-label {
-  font-family: var(--font-head);
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  font-weight: 700; color: var(--gold);
-  letter-spacing: 0.04em;
-  text-shadow: 0 0 40px rgba(204,17,0,0.5);
+.flag-banner-text {
+  position: absolute;
+  right: 3%;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
-.start-sub { font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--silver); margin-top: 0.5rem; }
+.banner-phoenix-logo {
+  width: clamp(50px, 8vw, 90px);
+  height: clamp(50px, 8vw, 90px);
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(204,17,0,0.5));
+  border-radius: 6px;
+}
+.banner-tagline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+.banner-title {
+  font-size: clamp(1rem, 2.2vw, 1.6rem);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 0 20px rgba(204,17,0,0.4);
+  line-height: 1.1;
+}
+.banner-sub {
+  font-size: clamp(0.55rem, 1.1vw, 0.78rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+}
 
 @media (max-width: 600px) {
-  .flagpole { height: 200px; }
-  #flag-canvas { max-width: 85vw; }
-  .start-phoenix { width: 60px; }
-  .start-label { font-size: 1.6rem; }
+  .flag-banner { height: 80px; }
+  .banner-tagline { display: none; }
+  .banner-phoenix-logo { width: 44px; height: 44px; }
+}
+
+/* ── NAV & FOOTER PHOENIX LOGO IMAGE ────────────── */
+.nav-phoenix-img {
+  width: 38px; height: 38px;
+  object-fit: contain;
+  border-radius: 4px;
+  filter: drop-shadow(0 0 8px rgba(204,17,0,0.4));
+}
+.footer-phoenix-img {
+  width: 36px; height: 36px;
+  object-fit: contain;
+  border-radius: 4px;
+  filter: drop-shadow(0 0 6px rgba(204,17,0,0.3));
 }
 
 /* ── NAV ──────────────────────────────────────── */
@@ -943,7 +950,7 @@ body.dev-mode .calendly-note { display: block; }
 
 /* ── PRINT ────────────────────────────────────── */
 @media print {
-  .music-player, #particle-canvas, .cursor, .cursor-trail, .start-overlay, .scroll-progress, .nav-burger { display: none !important; }
+  .music-player, #particle-canvas, #meteor-canvas, .cursor, .cursor-trail, .flag-banner, .scroll-progress, .nav-burger { display: none !important; }
   body { background: white; color: black; }
 }
 
