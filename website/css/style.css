@@ -1253,6 +1253,19 @@ body.dev-mode .calendly-note { display: block; }
   text-shadow: 0 0 20px rgba(204,17,0,0.4);
 }
 
+/* ── LINKEDIN NAME LINK ──────────────────────── */
+.name-link {
+  color: var(--gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(204,17,0,0.4);
+  padding-bottom: 1px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.name-link:hover {
+  color: var(--gold-light);
+  border-color: var(--gold-light);
+}
+
 /* ── RED THINKER FONT — brand name applications ── */
 .rt-font,
 .tour-band-name,
