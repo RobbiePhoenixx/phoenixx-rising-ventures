@@ -490,7 +490,7 @@ input, select, textarea, button { font-family: inherit; }
 }
 
 /* ── SECTIONS BASE ───────────────────────────── */
-.section { position: relative; z-index: 1; padding: 7rem 2rem; }
+.section { position: relative; z-index: 1; padding: 7rem 2rem; scroll-margin-top: 72px; }
 .section-inner { max-width: 1100px; margin: 0 auto; }
 .section-label {
   font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
@@ -577,7 +577,8 @@ input, select, textarea, button { font-family: inherit; }
 /* ── TOUR ────────────────────────────────────── */
 .tour-section { background: var(--deep); text-align: center; overflow: hidden; min-height: 100vh; }
 .tour-bg-text {
-  position: absolute; top: 88%; left: 50%; transform: translate(-50%, -50%);
+  /* Top edge sits at 3.5rem — mid-way in the 7rem padding gap above SONIC OCTANE'S */
+  position: absolute; top: 3.5rem; left: 50%; transform: translateX(-50%);
   font-family: var(--font-display);
   font-size: clamp(8rem, 20vw, 18rem);
   color: rgba(144, 99, 205, 0.14);  /* Pantone 265 C — medium violet */
@@ -588,7 +589,8 @@ input, select, textarea, button { font-family: inherit; }
 .tour-section .section-inner { position: relative; z-index: 1; }
 .tour-band-name {
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-size: clamp(1.8rem, 7vw, 6rem);
+  white-space: nowrap;
   letter-spacing: 0.1em; color: var(--gold);
   line-height: 1;
   text-shadow: 0 0 60px rgba(204,17,0,0.3), 0 0 120px rgba(255,34,0,0.15);
