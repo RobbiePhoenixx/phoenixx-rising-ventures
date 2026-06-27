@@ -477,6 +477,17 @@ input, select, textarea, button { font-family: inherit; }
 }
 .stat-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 0.35rem; }
 .stat-divider { font-size: 1.2rem; color: rgba(204,17,0,0.3); flex-shrink: 0; }
+.stat-text {
+  display: block;
+  font-family: var(--font-display); font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  color: var(--gold); line-height: 1;
+}
+.stat-pending {
+  color: rgba(204,17,0,0.55);
+  font-size: clamp(0.85rem, 1.6vw, 1.2rem);
+  letter-spacing: 0.06em;
+  font-style: italic;
+}
 
 /* ── SECTIONS BASE ───────────────────────────── */
 .section { position: relative; z-index: 1; padding: 7rem 2rem; }
