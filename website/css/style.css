@@ -577,7 +577,7 @@ input, select, textarea, button { font-family: inherit; }
 /* ── TOUR ────────────────────────────────────── */
 .tour-section { background: var(--deep); text-align: center; overflow: hidden; }
 .tour-bg-text {
-  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  position: absolute; top: 65%; left: 50%; transform: translate(-50%, -50%);
   font-family: var(--font-display);
   font-size: clamp(8rem, 20vw, 18rem);
   color: rgba(144, 99, 205, 0.14);  /* Pantone 265 C — medium violet */
