@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#02050A" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="msapplication-TileColor" content="#02050A" />
+
+  <title>Phoenixx Rising Ventures | Housing for Heroes</title>
+  <meta name="description" content="A national rock music tour raising funds to house America's veterans. 10 shows. 10,000 miles. One mission. Phoenixx Rising Ventures LLC." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Phoenixx Rising Ventures | Housing for Heroes" />
+  <meta property="og:description" content="Music that moves veterans home. Sonic Octane. 10 shows. 10,000 miles." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.phoenixxrisingventures.com" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <audio id="site-audio" loop preload="auto" autoplay>
+    <source src="music/Sonic Octane_Soldiers Toast_Full Song.mp3" type="audio/mpeg" />
+  </audio>
+</head>
+<body>
+
+<!-- ── SCROLL PROGRESS BAR ─────────────────────────── -->
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<!-- ── PARTICLE CANVAS ────────────────────────────── -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- ── CUSTOM CURSOR ──────────────────────────────── -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursor-trail"></div>
+
+<!-- ── TAP TO ENTER OVERLAY ───────────────────────── -->
+<div class="start-overlay" id="start-overlay">
+  <div class="start-inner">
+    <div class="start-phoenix" aria-hidden="true">
+      <svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="pg1" x1="60" y1="130" x2="60" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#C41E3A"/>
+            <stop offset="35%" stop-color="#FF5E00"/>
+            <stop offset="100%" stop-color="#FFD700"/>
+          </linearGradient>
+        </defs>
+        <path d="M15 70 Q5 30 35 20 Q20 45 42 60 Z" fill="url(#pg1)" opacity="0.9"/>
+        <path d="M105 70 Q115 30 85 20 Q100 45 78 60 Z" fill="url(#pg1)" opacity="0.9"/>
+        <path d="M38 100 Q60 118 82 100 Q76 80 60 74 Q44 80 38 100 Z" fill="#D4AF37"/>
+        <path d="M42 60 Q39 42 60 14 Q81 42 78 60 Q70 80 60 84 Q50 80 42 60 Z" fill="url(#pg1)"/>
+        <path d="M50 64 Q49 50 60 28 Q71 50 70 64 Q66 78 60 82 Q54 78 50 64 Z" fill="#FFD700" opacity="0.7"/>
+      </svg>
+    </div>
+    <p class="start-label">Tap to Enter</p>
+    <p class="start-sub">Housing for Heroes · Sonic Octane</p>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════════════ -->
+<nav class="nav" id="nav">
+  <a href="#home" class="nav-brand">
+    <svg class="nav-flame" viewBox="0 0 60 70" fill="none">
+      <defs>
+        <linearGradient id="nf" x1="30" y1="65" x2="30" y2="0" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#C41E3A"/>
+          <stop offset="40%" stop-color="#FF5E00"/>
+          <stop offset="100%" stop-color="#D4AF37"/>
+        </linearGradient>
+      </defs>
+      <path d="M8 38 Q3 16 18 10 Q10 24 22 32 Z" fill="url(#nf)" opacity="0.9"/>
+      <path d="M52 38 Q57 16 42 10 Q50 24 38 32 Z" fill="url(#nf)" opacity="0.9"/>
+      <path d="M20 52 Q30 60 40 52 Q37 40 30 37 Q23 40 20 52 Z" fill="#D4AF37"/>
+      <path d="M22 32 Q20 22 30 8 Q40 22 38 32 Q34 42 30 44 Q26 42 22 32 Z" fill="url(#nf)"/>
+    </svg>
+    <div class="nav-brand-text">
+      <span class="nav-brand-name">Phoenixx Rising</span>
+      <span class="nav-brand-sub">Housing for Heroes</span>
+    </div>
+  </a>
+
+  <ul class="nav-links" role="list">
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#tour">The Tour</a></li>
+    <li><a href="#sponsor">Sponsor</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <a href="#sponsor" class="nav-cta magnetic" data-magnetic>Become a Sponsor</a>
+
+  <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">✕</button>
+  <nav>
+    <a href="#mission" class="mobile-link">Mission</a>
+    <a href="#tour" class="mobile-link">The Tour</a>
+    <a href="#sponsor" class="mobile-link">Sponsor</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="#sponsor" class="btn btn-gold mobile-cta">Become a Sponsor</a>
+  </nav>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <img src="images/hero-bg.jpg" alt="" class="hero-photo" aria-hidden="true" />
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow" id="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      Phoenixx Rising Ventures LLC
+      <span class="eyebrow-dot"></span>
+    </div>
+
+    <h1 class="hero-title" id="hero-title">
+      <span class="hero-line">Music That</span>
+      <span class="hero-line hero-line-gold">Moves Veterans</span>
+      <span class="hero-line">Home</span>
+    </h1>
+
+    <p class="hero-desc" id="hero-desc">
+      A national rock music tour raising funds to give America's veterans<br class="desktop-br" />
+      the homes they earned. 10 shows. 10,000 miles. One mission.
+    </p>
+
+    <div class="hero-actions" id="hero-actions">
+      <a href="#sponsor" class="btn btn-gold btn-lg magnetic" data-magnetic>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        Become a Sponsor
+      </a>
+      <a href="#mission" class="btn btn-ghost btn-lg magnetic" data-magnetic>Our Story</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint" id="hero-scroll">
+    <div class="scroll-mouse">
+      <div class="scroll-dot"></div>
+    </div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     STATS TICKER
+════════════════════════════════════════════════════ -->
+<div class="stats-ticker" id="stats">
+  <div class="stats-ticker-inner">
+    <div class="stat-block">
+      <span class="stat-num" data-target="285" data-suffix="M+">0</span>
+      <span class="stat-label">Household Reach</span>
+    </div>
+    <div class="stat-divider" aria-hidden="true">✦</div>
+    <div class="stat-block">
+      <span class="stat-num" data-target="10">0</span>
+      <span class="stat-label">Tour Shows</span>
+    </div>
+    <div class="stat-divider" aria-hidden="true">✦</div>
+    <div class="stat-block">
+      <span class="stat-num" data-target="10" data-suffix="K">0</span>
+      <span class="stat-label">Miles Driven</span>
+    </div>
+    <div class="stat-divider" aria-hidden="true">✦</div>
+    <div class="stat-block">
+      <span class="stat-num" data-target="200" data-suffix="M+">0</span>
+      <span class="stat-label">Radio Listeners</span>
+    </div>
+    <div class="stat-divider" aria-hidden="true">✦</div>
+    <div class="stat-block">
+      <span class="stat-num" data-target="3">0</span>
+      <span class="stat-label">Weeks on the Road</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+     MISSION
+════════════════════════════════════════════════════ -->
+<section class="section mission-section" id="mission">
+  <div class="section-inner mission-grid">
+    <div class="mission-visual-col">
+      <div class="mission-image-frame">
+        <img src="images/mission.jpg" alt="Housing for Heroes — Veterans" class="mission-img" onerror="this.style.display='none'" />
+        <div class="mission-img-placeholder" aria-hidden="true">
+          <svg width="64" height="80" viewBox="0 0 120 140" fill="none">
+            <path d="M15 70 Q5 30 35 20 Q20 45 42 60 Z" fill="#D4AF37" opacity="0.4"/>
+            <path d="M105 70 Q115 30 85 20 Q100 45 78 60 Z" fill="#D4AF37" opacity="0.4"/>
+            <path d="M42 60 Q39 42 60 14 Q81 42 78 60 Q70 80 60 84 Q50 80 42 60 Z" fill="#D4AF37" opacity="0.6"/>
+          </svg>
+          <span>Add hero photo<br/>images/mission.jpg</span>
+        </div>
+        <div class="image-frame-border"></div>
+        <div class="image-glow"></div>
+      </div>
+      <div class="mission-quote-card">
+        <blockquote>"Every veteran deserves a place to call home."</blockquote>
+        <cite>— Robert Zeas, Founder</cite>
+      </div>
+    </div>
+
+    <div class="mission-content-col">
+      <div class="section-label">Our Purpose</div>
+      <h2 class="section-title">From the <em>Stage</em><br/>to the Front Door</h2>
+      <div class="gold-rule"></div>
+      <p class="section-body">
+        America's veterans sacrificed everything. Too many come home to uncertainty, instability, and streets instead of shelter. Phoenixx Rising Ventures uses the raw, unrelenting power of live rock music to change that — one show, one city, one veteran at a time.
+      </p>
+
+      <ul class="mission-list">
+        <li class="mission-item">
+          <div class="mission-icon">🏠</div>
+          <div>
+            <strong>Fund Veteran Housing</strong>
+            <span>100% of tour proceeds support stable housing through the Veterans Community Project.</span>
+          </div>
+        </li>
+        <li class="mission-item">
+          <div class="mission-icon">🎸</div>
+          <div>
+            <strong>Rock Music as a Force for Good</strong>
+            <span>Sonic Octane delivers electrifying performances that unite communities around the cause.</span>
+          </div>
+        </li>
+        <li class="mission-item">
+          <div class="mission-icon">📡</div>
+          <div>
+            <strong>285M+ Household Reach</strong>
+            <span>Every show broadcast across national TV, radio, and social platforms.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     THE TOUR — SONIC OCTANE
+════════════════════════════════════════════════════ -->
+<section class="section tour-section" id="tour">
+  <div class="tour-bg-text" aria-hidden="true">TOUR</div>
+
+  <div class="section-inner">
+    <div class="section-label center">Phoenixx Rising National Tour</div>
+    <h2 class="tour-band-name">Sonic Octane</h2>
+    <p class="tour-tagline">Live. Loud. Unapologetic. All for a cause.</p>
+
+    <div class="tour-facts">
+      <div class="tour-fact">
+        <span class="tour-fact-num">10</span>
+        <span class="tour-fact-label">Electrifying Shows</span>
+      </div>
+      <div class="tour-fact-sep" aria-hidden="true"></div>
+      <div class="tour-fact">
+        <span class="tour-fact-num">10K</span>
+        <span class="tour-fact-label">Miles Across America</span>
+      </div>
+      <div class="tour-fact-sep" aria-hidden="true"></div>
+      <div class="tour-fact">
+        <span class="tour-fact-num">3</span>
+        <span class="tour-fact-label">Consecutive Weeks</span>
+      </div>
+    </div>
+
+    <div class="gold-rule centered"></div>
+
+    <div class="section-label center" style="margin-bottom:1.5rem;">Media Partners &amp; Reach</div>
+    <div class="media-cards">
+      <div class="media-card">
+        <div class="media-card-icon">📺</div>
+        <h3>Live It Up TV</h3>
+        <p>With Donna Drake — nationally syndicated television</p>
+        <div class="media-reach">85M Homes</div>
+        <div class="media-sub">285M+ total via cable &amp; satellite</div>
+      </div>
+      <div class="media-card">
+        <div class="media-card-icon">🎙️</div>
+        <h3>Rock Rage Radio</h3>
+        <p>The largest rock radio network — coast to coast</p>
+        <div class="media-reach">200M+ Listeners</div>
+      </div>
+      <div class="media-card">
+        <div class="media-card-icon">🚌</div>
+        <h3>Prevost Tour Bus</h3>
+        <p>Rolling billboard across every highway in America</p>
+        <div class="media-reach">600K–1M</div>
+        <div class="media-sub">Highway impressions per tour</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     SPONSORSHIP TIERS
+════════════════════════════════════════════════════ -->
+<section class="section sponsor-section" id="sponsor">
+  <div class="section-inner">
+    <div class="section-label center">Investment Opportunities</div>
+    <h2 class="section-title center">Become a <em>Sponsor</em></h2>
+    <p class="section-body center max-600">
+      Put your brand in front of 285+ million households while making a direct, measurable impact on veteran lives.
+    </p>
+
+    <div class="sponsor-grid">
+
+      <div class="sponsor-card tier-presenting" data-tilt>
+        <div class="card-shine"></div>
+        <div class="tier-badge">Presenting Sponsor</div>
+        <div class="tier-amount">$100K<sup>+</sup></div>
+        <div class="tier-tagline">Maximum Exposure. Maximum Impact.</div>
+        <ul class="tier-perks">
+          <li>Top billing — show named after your brand</li>
+          <li>Live TV segment with Donna Drake</li>
+          <li>Prevost bus full wrap</li>
+          <li>Rock Rage Radio — all 10 cities</li>
+          <li>Executive speaking slot at shows</li>
+          <li>Dedicated social campaign</li>
+          <li>Custom impact report</li>
+        </ul>
+        <a href="#contact" class="btn btn-gold magnetic" data-magnetic>Claim This Tier</a>
+      </div>
+
+      <div class="sponsor-card tier-title" data-tilt>
+        <div class="card-shine"></div>
+        <div class="tier-badge">Title Sponsor</div>
+        <div class="tier-amount">$50K</div>
+        <div class="tier-tagline">Premium Brand Presence.</div>
+        <ul class="tier-perks">
+          <li>Premium billing on all tour materials</li>
+          <li>Featured TV interview segment</li>
+          <li>Prevost bus side panel branding</li>
+          <li>Rock Rage Radio — 5 cities</li>
+          <li>VIP meet &amp; greet at 3 shows</li>
+          <li>Logo on all digital platforms</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline magnetic" data-magnetic>Claim This Tier</a>
+      </div>
+
+      <div class="sponsor-card tier-tour" data-tilt>
+        <div class="card-shine"></div>
+        <div class="tier-badge">Tour Sponsor</div>
+        <div class="tier-amount">$25K</div>
+        <div class="tier-tagline">Real Reach. Real Impact.</div>
+        <ul class="tier-perks">
+          <li>Branded presence at 5 shows</li>
+          <li>Rock Rage Radio — 3 cities</li>
+          <li>Logo on tour website &amp; socials</li>
+          <li>VIP tickets to 2 shows</li>
+          <li>Co-branded press release</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline magnetic" data-magnetic>Claim This Tier</a>
+      </div>
+
+      <div class="sponsor-card tier-private" data-tilt>
+        <div class="card-shine"></div>
+        <div class="tier-badge">Private Sponsor</div>
+        <div class="tier-amount">$10K</div>
+        <div class="tier-tagline">Join the Movement.</div>
+        <ul class="tier-perks">
+          <li>Branded presence at 2 shows</li>
+          <li>Logo on tour website</li>
+          <li>VIP tickets to 1 show</li>
+          <li>Social media shoutout</li>
+          <li>Digital impact certificate</li>
+        </ul>
+        <a href="#contact" class="btn btn-outline magnetic" data-magnetic>Claim This Tier</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     PARTNERS MARQUEE
+════════════════════════════════════════════════════ -->
+<div class="marquee-section">
+  <div class="section-label center" style="margin-bottom:1.5rem;">Tour Partners &amp; Media</div>
+  <div class="marquee-track" id="marquee">
+    <div class="marquee-inner">
+      <span class="marquee-item">Veterans Community Project</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item">Live It Up TV</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item">Rock Rage Radio</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item">BREYTING</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item">Sonic Octane</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item">Prevost Tour Bus</span>
+      <span class="marquee-sep">✦</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="marquee-item">Veterans Community Project</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item">Live It Up TV</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item">Rock Rage Radio</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item">BREYTING</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item">Sonic Octane</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item">Prevost Tour Bus</span>
+      <span class="marquee-sep">✦</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+     CTA BAND
+════════════════════════════════════════════════════ -->
+<section class="cta-band">
+  <div class="cta-band-bg"></div>
+  <div class="cta-band-inner">
+    <div class="section-label center">Join the Movement</div>
+    <h2 class="cta-headline">A Veteran Deserves a<br/><em>Place to Call Home</em></h2>
+    <p class="cta-body">Your sponsorship doesn't just put your brand on a tour bus — it puts a roof over a veteran's head. This is the investment that echoes.</p>
+    <div class="cta-actions">
+      <a href="#contact" class="btn btn-gold btn-lg magnetic" data-magnetic>Get in Touch Today</a>
+      <a href="tel:+12156208890" class="btn btn-ghost btn-lg magnetic" data-magnetic>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.43 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (215) 620-8890
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════════════ -->
+<section class="section contact-section" id="contact">
+  <div class="section-inner contact-grid">
+
+    <div class="contact-info-col">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Ready to<br/><em>Partner With Us?</em></h2>
+      <div class="gold-rule"></div>
+      <p class="section-body">Whether you're ready to commit or just want to learn more, every call is a step toward housing another hero.</p>
+
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-icon">👤</div>
+          <div>
+            <div class="contact-key">Founder</div>
+            <div class="contact-val">Robert "Robbie Phoenixx" Zeas</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="contact-key">Phone / Text</div>
+            <div class="contact-val"><a href="tel:+12156208890">(215) 620-8890</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-key">Email</div>
+            <div class="contact-val"><a href="mailto:robbie@phoenixxrisingventures.com">robbie@phoenixxrisingventures.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <div class="contact-key">Website</div>
+            <div class="contact-val"><a href="https://www.PhoenixxRisingVentures.com">PhoenixxRisingVentures.com</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calendly placeholder -->
+      <div class="calendly-block">
+        <div class="calendly-label">Book a Sponsorship Call</div>
+        <a href="#" class="btn btn-gold calendly-btn magnetic" data-magnetic id="calendly-btn">
+          📅 Schedule a 30-Min Call
+        </a>
+        <p class="calendly-note">Add your Calendly link and I'll wire it up.</p>
+      </div>
+    </div>
+
+    <div class="contact-form-col">
+      <form class="contact-form" id="sponsor-form" novalidate>
+        <h3 class="form-title">Send a Message</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-name">Full Name</label>
+            <input type="text" id="f-name" placeholder="First and last name" autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="f-company">Company / Organization</label>
+            <input type="text" id="f-company" placeholder="Your company" autocomplete="organization" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="f-email">Email Address</label>
+            <input type="email" id="f-email" placeholder="you@company.com" autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="f-phone">Phone Number</label>
+            <input type="tel" id="f-phone" placeholder="(000) 000-0000" autocomplete="tel" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="f-tier">Sponsorship Interest</label>
+          <select id="f-tier">
+            <option value="">Select a tier...</option>
+            <option>Presenting Sponsor ($100,000+)</option>
+            <option>Title Sponsor ($50,000)</option>
+            <option>Tour Sponsor ($25,000)</option>
+            <option>Private Sponsor ($10,000)</option>
+            <option>Just want to learn more</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="f-msg">Message</label>
+          <textarea id="f-msg" rows="4" placeholder="Tell us about yourself and how you'd like to be involved..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold btn-block magnetic" data-magnetic>
+          Send Message <span class="btn-arrow">→</span>
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg class="nav-flame" viewBox="0 0 60 70" fill="none" width="36" height="42">
+            <defs>
+              <linearGradient id="ff" x1="30" y1="65" x2="30" y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#C41E3A"/>
+                <stop offset="50%" stop-color="#FF5E00"/>
+                <stop offset="100%" stop-color="#D4AF37"/>
+              </linearGradient>
+            </defs>
+            <path d="M8 38 Q3 16 18 10 Q10 24 22 32 Z" fill="url(#ff)" opacity="0.9"/>
+            <path d="M52 38 Q57 16 42 10 Q50 24 38 32 Z" fill="url(#ff)" opacity="0.9"/>
+            <path d="M20 52 Q30 60 40 52 Q37 40 30 37 Q23 40 20 52 Z" fill="#D4AF37"/>
+            <path d="M22 32 Q20 22 30 8 Q40 22 38 32 Q34 42 30 44 Q26 42 22 32 Z" fill="url(#ff)"/>
+          </svg>
+          <span>Phoenixx Rising Ventures</span>
+        </div>
+        <p>Raising funds to house America's veterans through the power of live rock music. One tour. One mission. Infinite impact.</p>
+      </div>
+      <div class="footer-links-col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="#mission">Our Mission</a></li>
+          <li><a href="#tour">The Tour</a></li>
+          <li><a href="#sponsor">Sponsorship</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h5>Sponsor Tiers</h5>
+        <ul>
+          <li><a href="#sponsor">Presenting ($100K+)</a></li>
+          <li><a href="#sponsor">Title ($50K)</a></li>
+          <li><a href="#sponsor">Tour ($25K)</a></li>
+          <li><a href="#sponsor">Private ($10K)</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+12156208890">(215) 620-8890</a></li>
+          <li><a href="mailto:robbie@phoenixxrisingventures.com">Email Us</a></li>
+          <li><a href="https://www.PhoenixxRisingVentures.com">Website</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; <span id="copy-year"></span> <strong>Phoenixx Rising Ventures LLC</strong>. All rights reserved. Colorado LLC. Housing for Heroes is a fundraising initiative of Phoenixx Rising Ventures LLC.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Sponsorship Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ════════════════════════════════════════════════════
+     MUSIC PLAYER (fixed — always on)
+════════════════════════════════════════════════════ -->
+<div class="music-player" id="music-player">
+  <div class="player-eq" id="player-eq">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="player-meta">
+    <div class="player-song">Soldiers Toast</div>
+    <div class="player-artist">Sonic Octane</div>
+    <div class="player-bar"><div class="player-fill" id="player-fill"></div></div>
+  </div>
+  <input type="range" class="vol-slider" id="vol-slider" min="0" max="1" step="0.02" value="0.75" aria-label="Volume" title="Volume" />
+  <button class="mute-toggle" id="mute-toggle" aria-label="Toggle mute">
+    <svg id="icon-on" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+    </svg>
+    <svg id="icon-off" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+      <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+    </svg>
+  </button>
+</div>
+
+
+<script type="module" src="js/animations.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/main.js"></script>
+<script>document.getElementById('copy-year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

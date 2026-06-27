@@ -1,0 +1,10 @@
+# Sensitive business files — never commit
+sponsorship/contacts/
+legal/
+*.xlsx
+*.xls
+*.docx
+*.doc
+*.pdf
+.DS_Store
+Thumbs.db
