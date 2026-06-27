@@ -23,7 +23,7 @@
     canvas.height = window.innerHeight;
   }
 
-  const COLORS = ['#FF5E00', '#D4AF37', '#FFD700', '#C41E3A', '#FF8C00'];
+  const COLORS = ['#FF2200', '#CC1100', '#8B0000', '#FF4400', '#AA0000'];
   const particles = [];
   const MAX_P = isMobile() ? 35 : 70;
 
