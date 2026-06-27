@@ -1418,8 +1418,9 @@ a, button, [data-magnetic], input, select, textarea, label,
   letter-spacing: 0.04em;
 }
 
-/* "Sonic Octane" in the flag banner — match size of "National Tour" text beside it */
-.banner-sub .rt-font {
-  font-size: 1.35em;
+/* Full "Sonic Octane National Tour" in banner — single Red Thinker size */
+.banner-sub .banner-rt {
+  font-size: 1.25em;
+  letter-spacing: 0.06em;
   vertical-align: middle;
 }
