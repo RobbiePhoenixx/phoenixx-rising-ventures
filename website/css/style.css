@@ -195,7 +195,7 @@ input, select, textarea, button { font-family: inherit; }
   line-height: 1.1;
 }
 .banner-sub {
-  font-size: clamp(0.55rem, 1.1vw, 0.78rem);
+  font-size: clamp(0.6rem, 1.2vw, 0.85rem);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.85);
@@ -254,7 +254,8 @@ input, select, textarea, button { font-family: inherit; }
 
 .nav-links { display: flex; gap: 2.5rem; }
 .nav-links a {
-  font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+  font-size: 1.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 700;
   color: var(--silver);
   position: relative; padding-bottom: 2px;
   transition: color 0.2s;
@@ -523,7 +524,7 @@ input, select, textarea, button { font-family: inherit; }
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
   font-family: var(--font-display);
   font-size: clamp(8rem, 20vw, 18rem);
-  color: rgba(204,17,0,0.03);
+  color: rgba(144, 99, 205, 0.14);  /* Pantone 265 C — medium violet */
   letter-spacing: 0.2em; white-space: nowrap;
   pointer-events: none; user-select: none;
   z-index: 0;
@@ -1415,4 +1416,10 @@ a, button, [data-magnetic], input, select, textarea, label,
 .start-sub {
   font-family: 'RedThinker', var(--font-head), serif;
   letter-spacing: 0.04em;
+}
+
+/* "Sonic Octane" in the flag banner — match size of "National Tour" text beside it */
+.banner-sub .rt-font {
+  font-size: 1.35em;
+  vertical-align: middle;
 }
