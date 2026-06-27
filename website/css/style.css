@@ -1339,7 +1339,7 @@ body.dev-mode .calendly-note { display: block; }
 }
 .partner-logo-item:hover .partner-text-logo { color: var(--gold); }
 
-/* Fallback text — shows when image fails to load */
+/* Fallback text — shows only when image fails */
 .partner-fallback {
   display: none;
   font-size: 0.7rem;
@@ -1349,6 +1349,16 @@ body.dev-mode .calendly-note { display: block; }
 }
 img.partner-img-dark:not([src]),
 img.partner-img-light:not([src]) { display: none; }
+
+/* Marquee text labels always visible below logo */
+.marquee-logo-fallback {
+  display: inline !important;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  color: var(--silver);
+}
 
 /* Marquee logo items */
 .marquee-inner { align-items: center; }
