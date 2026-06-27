@@ -125,7 +125,7 @@ input, select, textarea, button { font-family: inherit; }
 /* ── START OVERLAY ───────────────────────────── */
 .start-overlay {
   position: fixed; inset: 0; z-index: 8000;
-  background: rgba(2,5,10,0.96);
+  background: radial-gradient(ellipse at 50% 30%, rgba(20,0,0,0.97) 0%, rgba(0,0,0,0.99) 100%);
   display: flex; align-items: center; justify-content: center;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -133,18 +133,87 @@ input, select, textarea, button { font-family: inherit; }
   transition: opacity 0.7s var(--ease-out);
 }
 .start-overlay.gone { opacity: 0; pointer-events: none; }
+.start-content {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1rem; padding: 1.5rem 1rem;
+  max-height: 100vh; overflow: hidden;
+}
+
+/* ── FLAG SCENE ──────────────────────────────── */
+.flag-scene {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.flagpole-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  position: relative; z-index: 2;
+}
+.flagpole-ball {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FFD700, #B8860B 60%, #7a5c20);
+  box-shadow: 0 0 12px rgba(255,215,0,0.5), 0 2px 6px rgba(0,0,0,0.8);
+  flex-shrink: 0;
+}
+.flagpole {
+  width: 7px;
+  height: 320px;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.15) 0%,
+    #c4a35a 15%,
+    #e8d5b0 35%,
+    #a07840 55%,
+    #7a5c30 75%,
+    rgba(0,0,0,0.3) 100%
+  );
+  border-radius: 2px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.7), inset -1px 0 3px rgba(255,255,255,0.15);
+  flex-shrink: 0;
+}
+.flagpole-base {
+  width: 20px; height: 6px;
+  background: linear-gradient(90deg, #7a5c30, #c4a35a, #7a5c30);
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+#flag-canvas {
+  display: block;
+  margin-top: 10px;
+  filter:
+    drop-shadow(6px 12px 30px rgba(0,0,0,0.85))
+    drop-shadow(0 0 40px rgba(180,0,0,0.15));
+  image-rendering: crisp-edges;
+  max-width: min(560px, 90vw);
+  height: auto;
+}
+.flag-glow {
+  position: absolute;
+  bottom: -20px; left: 50%; transform: translateX(-50%);
+  width: 80%; height: 30px;
+  background: radial-gradient(ellipse, rgba(204,17,0,0.18), transparent 70%);
+  pointer-events: none;
+}
+
 .start-inner { text-align: center; }
-.start-phoenix { width: 100px; margin: 0 auto 1.5rem;
+.start-phoenix { width: 80px; margin: 0 auto 1rem;
   animation: floatY 2.5s ease-in-out infinite; }
 .start-phoenix svg { width: 100%; height: auto; filter: drop-shadow(0 0 24px rgba(255,34,0,0.6)); }
 .start-label {
   font-family: var(--font-head);
-  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-size: clamp(1.8rem, 5vw, 3rem);
   font-weight: 700; color: var(--gold);
   letter-spacing: 0.04em;
   text-shadow: 0 0 40px rgba(204,17,0,0.5);
 }
-.start-sub { font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--silver); margin-top: 0.6rem; }
+.start-sub { font-size: 0.8rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--silver); margin-top: 0.5rem; }
+
+@media (max-width: 600px) {
+  .flagpole { height: 200px; }
+  #flag-canvas { max-width: 85vw; }
+  .start-phoenix { width: 60px; }
+  .start-label { font-size: 1.6rem; }
+}
 
 /* ── NAV ──────────────────────────────────────── */
 .nav {
