@@ -238,10 +238,14 @@ input, select, textarea, button { font-family: inherit; }
 
 /* ── NAV ──────────────────────────────────────── */
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  position: fixed;
+  /* Center vertically within the flag banner */
+  top: calc(clamp(100px, 18vw, 160px) / 2);
+  transform: translateY(-50%);
+  left: 0; right: 0; z-index: 1000;
   display: flex; align-items: center; justify-content: center;
   padding: 1.1rem 2.5rem;
-  transition: padding 0.4s var(--ease-out), background 0.4s;
+  transition: top 0.4s var(--ease-out), transform 0.4s var(--ease-out), padding 0.4s var(--ease-out), background 0.4s;
 }
 .nav::before {
   content: '';
@@ -252,7 +256,7 @@ input, select, textarea, button { font-family: inherit; }
   transition: background 0.4s, backdrop-filter 0.4s;
   border-bottom: none;
 }
-.nav.scrolled { padding: 0.8rem 2.5rem; }
+.nav.scrolled { top: 0; transform: translateY(0); padding: 0.8rem 2.5rem; }
 .nav.scrolled::before {
   background: rgba(0,0,0,0.82);   /* only darkens once user scrolls past flag */
   backdrop-filter: blur(20px);
@@ -957,7 +961,7 @@ body.dev-mode .calendly-note { display: block; }
 @media (max-width: 768px) {
   .nav-links, .nav-cta { display: none; }
   .nav-burger { display: flex; }
-  .nav { padding: 1rem 1.25rem; }
+  .nav { top: calc(clamp(80px, 18vw, 160px) / 2); transform: translateY(-50%); padding: 1rem 1.25rem; }
   .nav.scrolled { padding: 0.75rem 1.25rem; }
   .section { padding: 5rem 1.25rem; }
   .mission-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
