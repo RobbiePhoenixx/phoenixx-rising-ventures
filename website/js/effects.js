@@ -227,6 +227,140 @@
   });
 
   // ════════════════════════════════════════════
+  //  SPOTLIGHT — follows cursor
+  // ════════════════════════════════════════════
+  if (!isTouch()) {
+    const spotlight = document.getElementById('spotlight');
+    if (spotlight) {
+      document.addEventListener('mousemove', e => {
+        spotlight.style.setProperty('--sx', e.clientX + 'px');
+        spotlight.style.setProperty('--sy', e.clientY + 'px');
+      }, { passive: true });
+    }
+  }
+
+  // ════════════════════════════════════════════
+  //  METEOR SHOWER
+  // ════════════════════════════════════════════
+  function initMeteors() {
+    if (prefersRM()) return;
+    const mc  = document.getElementById('meteor-canvas');
+    const mctx = mc && mc.getContext('2d');
+    if (!mc || !mctx) return;
+
+    function sizeMC() {
+      mc.width  = window.innerWidth;
+      mc.height = window.innerHeight;
+    }
+    sizeMC();
+    window.addEventListener('resize', sizeMC, { passive: true });
+
+    class Meteor {
+      constructor() { this.spawn(); }
+      spawn() {
+        this.x     = Math.random() * mc.width * 1.5;
+        this.y     = -20 - Math.random() * 200;
+        this.len   = 80 + Math.random() * 120;
+        this.speed = 4 + Math.random() * 6;
+        this.angle = Math.PI / 4 + (Math.random() - 0.5) * 0.3;
+        this.life  = 1;
+        this.decay = 0.012 + Math.random() * 0.01;
+        this.w     = 1 + Math.random() * 1.5;
+        this.active = false;
+        this.delay  = Math.random() * 600;
+      }
+      update() {
+        if (this.delay > 0) { this.delay--; return; }
+        if (!this.active) this.active = true;
+        this.x    += Math.cos(this.angle) * this.speed;
+        this.y    += Math.sin(this.angle) * this.speed;
+        this.life -= this.decay;
+        if (this.life <= 0 || this.y > mc.height + 50) this.spawn();
+      }
+      draw() {
+        if (!this.active || this.life <= 0) return;
+        const tx = this.x - Math.cos(this.angle) * this.len;
+        const ty = this.y - Math.sin(this.angle) * this.len;
+        const g  = mctx.createLinearGradient(tx, ty, this.x, this.y);
+        g.addColorStop(0, 'rgba(204,17,0,0)');
+        g.addColorStop(0.7, `rgba(255,68,0,${this.life * 0.6})`);
+        g.addColorStop(1, `rgba(255,255,255,${this.life * 0.8})`);
+        mctx.save();
+        mctx.globalAlpha = this.life;
+        mctx.strokeStyle = g;
+        mctx.lineWidth   = this.w;
+        mctx.lineCap     = 'round';
+        mctx.beginPath();
+        mctx.moveTo(tx, ty);
+        mctx.lineTo(this.x, this.y);
+        mctx.stroke();
+        mctx.restore();
+      }
+    }
+
+    const meteors = [];
+    const METEOR_COUNT = isMobile() ? 4 : 8;
+    for (let i = 0; i < METEOR_COUNT; i++) meteors.push(new Meteor());
+
+    function tickMeteors() {
+      mctx.clearRect(0, 0, mc.width, mc.height);
+      meteors.forEach(m => { m.update(); m.draw(); });
+      requestAnimationFrame(tickMeteors);
+    }
+    tickMeteors();
+  }
+  initMeteors();
+
+  // ════════════════════════════════════════════
+  //  TYPEWRITER — hero description
+  // ════════════════════════════════════════════
+  function initTypewriter() {
+    const el = document.getElementById('hero-desc');
+    if (!el || prefersRM()) return;
+    const text = el.dataset.typewriter;
+    if (!text) return;
+
+    el.innerHTML = '';
+    const cursor = document.createElement('span');
+    cursor.className = 'typewriter-cursor';
+    el.appendChild(cursor);
+
+    let i = 0;
+    const delay = 1400;
+    const speed = 28;
+
+    setTimeout(() => {
+      const tick = () => {
+        if (i < text.length) {
+          cursor.insertAdjacentText('beforebegin', text[i++]);
+          setTimeout(tick, speed + (Math.random() * 20));
+        } else {
+          setTimeout(() => cursor.remove(), 1200);
+        }
+      };
+      tick();
+    }, delay);
+  }
+  initTypewriter();
+
+  // ════════════════════════════════════════════
+  //  BUTTON RIPPLE
+  // ════════════════════════════════════════════
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      const rect  = btn.getBoundingClientRect();
+      const size  = Math.max(rect.width, rect.height) * 2;
+      const x     = e.clientX - rect.left - size / 2;
+      const y     = e.clientY - rect.top  - size / 2;
+      const rip   = document.createElement('span');
+      rip.className = 'ripple';
+      rip.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px`;
+      btn.appendChild(rip);
+      rip.addEventListener('animationend', () => rip.remove());
+    });
+  });
+
+  // ════════════════════════════════════════════
   //  INIT ON DOM READY
   // ════════════════════════════════════════════
   if (document.readyState === 'loading') {
